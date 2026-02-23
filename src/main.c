@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include "../include/game.h"
 #include "../include/map.h"
-#include <conio.h> // Windows only
+#include <conio.h>
 
 int main() {
+
+    if (!isReachable()) {
+        printf("Map is invalid: core is not reachable from the player!\n");
+        return 1;
+    }   
+
     initGame();
 
     printf("\n================================\n");

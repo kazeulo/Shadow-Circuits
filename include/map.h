@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 
-#define WIDTH 10
+#define WIDTH 12
 #define HEIGHT 8
 
 #define EMPTY ' '

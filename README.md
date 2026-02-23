@@ -1,6 +1,6 @@
 # Shadow Circuits
 
-ShadowGrid is a simple terminal-based puzzle and stealth game written in C. Navigate your robot (@) through the grid to reach the core (C) without being detected by sensors (S).
+Shadow Circuts is a simple terminal-based puzzle and stealth game written in C. Navigate your robot (@) through the grid to reach the core (C) without being detected by sensors (S).
 
 ---
 

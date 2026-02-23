@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>  
 #include "../include/game.h"
 #include "../include/map.h"
 
@@ -26,6 +27,48 @@ void initGame() {
             }
         }
     }
+}
+
+
+// bfs algorithm to check if the core is actually reachable
+bool isReachable() {
+    bool visited[HEIGHT][WIDTH];
+    memset(visited, 0, sizeof(visited));
+
+    int queue[HEIGHT * WIDTH][2];
+    int front = 0, back = 0;
+
+    // Start from player
+    queue[back][0] = player.x;
+    queue[back][1] = player.y;
+    back++;
+    visited[player.y][player.x] = true;
+
+    int dir[4][2] = { {0,1}, {1,0}, {0,-1}, {-1,0} }; // down, right, up, left
+
+    while (front < back) {
+        int x = queue[front][0];
+        int y = queue[front][1];
+        front++;
+
+        if (x == coreX && y == coreY) return true; // reached core
+
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dir[i][0];
+            int ny = y + dir[i][1];
+
+            if (nx >= 0 && nx < WIDTH && ny >= 0 && ny < HEIGHT) {
+                if (!visited[ny][nx] && map[ny][nx] != WALL) {
+                    visited[ny][nx] = true;
+                    queue[back][0] = nx;
+                    queue[back][1] = ny;
+                    back++;
+                }
+            }
+        }
+    }
+
+    return false; // no path found
 }
 
 void drawMap() {
